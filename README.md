@@ -1,4 +1,8 @@
+# CSGOExchange
+Exchanging csgo skins using Steam Web API.
+
 # Steam OpenId authentication with python-social-auth
+https://github.com/stefangeyer/django-steam-openid-example
 
 This application shows how to create a django app with steam openid
 authentication using the steam backend in the package python-social-auth.
