@@ -48,7 +48,7 @@ class Item(models.Model):
     name = models.CharField(max_length=255)
     type = models.CharField(max_length=100, choices=Types.choices)
     cost = models.DecimalField(max_digits=21, decimal_places=20)
-    image = models.ImageField()
+    image = models.ImageField(null=True)
 
     class Meta:
         abstract = True

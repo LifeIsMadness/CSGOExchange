@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>Trade</title>
+    {% endblock %}
+    {% block styles %}
+        {{ block.super }}
+        <link rel="stylesheet" href="{% static 'exchanger/css/index.css' %}" type="text/css">
+    {% endblock %}
+
+</head>
+<body>
+{% block body %}
+    {{ block.super }}
+    <main>
+        <div class="container-fluid container-padded-60" style="height: auto !important;">
+            <div class="col-md-9" style="height: auto !important; min-height: 0px !important;">
+                <div class="row">
+                    <div class="col-md-14" id="trades-list">
+                        <div class="row trade-listing" id="trade-2285163">
+                            <div class="col-md-14">
+                                <div class="panel panel-default panel-simpletrade ">
+                                    <div class="panel-heading">
+                                        <div class="row trades-heading">
+                                            <div class="user-heading col-md-10">
+                                                <img class="radiused trade-userimg"
+                                                     src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/78/782ff688a1ce213ad6c324ea551a97d07cb25054.jpg"
+                                                     alt="782ff688a1ce213ad6c324ea551a97d07cb25054"
+                                                     data-original="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/78/782ff688a1ce213ad6c324ea551a97d07cb25054.jpg"
+                                                     style="display: inline;">
+                                                <a href="https://csgotraders.net/profile/r0fstn3u" data-toggle="tooltip"
+                                                   data-html="true" title="" class="user-profile-link"
+                                                   data-original-title="Show Space Cowboy profile page">
+                                                    <strong>
+                                                        Space Cowboy</strong>
+                                                </a>
+                                                wants to trade
+                                                <span class="dimmed timed">(bumped <strong><span>44 minutes ago</span></strong>)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="left items_have col-md-5">
+                                                <div class="steamitem-wrapper " style="float: left;">
+                                                    <div class="steamitem itemsmall normal "
+                                                         style="border-bottom: 4px solid #eb4b4b;"
+                                                         data-type="normal"
+                                                         data-title="AK-47 | Legion of Anubis" data-container="body"
+                                                         data-trigger="hover" data-placement="top" data-count="1"
+                                                         data-id="57029"
+                                                         data-displayname="AK-47 | Legion of Anubis (Minimal Wear)"
+                                                         data-assetid="62396023" data-original-title="" title="">
+                                                        <div class="steamitem-counter"></div>
+                                                        <div class="steamitem-price" style="display: block;">$359.01
+                                                        </div>
+                                                        <div class="steamitem-image">
+                                                            <img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV0924gYKChMj4OrzZgiUGv5wo3uuY8dr02lLn-0FsMGmgIdfEelU3Ml-G_VG9xOm7gZC87suf1zI97aiJAbeK/100fx60f"
+                                                                 alt="100fx60f"
+                                                                 data-original="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV0924gYKChMj4OrzZgiUGv5wo3uuY8dr02lLn-0FsMGmgIdfEelU3Ml-G_VG9xOm7gZC87suf1zI97aiJAbeK/100fx60f"
+                                                                 style="display: inline;">
+                                                        </div>
+                                                        <div class="steamitem-itemwear ">
+                                                            Minimal Wear
+                                                        </div>
+                                                        {#                                                        <div style="display:none" class="search">AK-47 | Legion of#}
+                                                        {#                                                            Anubis#}
+                                                        {#                                                        </div>#}
+                                                        {#                                                        <div style="display:none" class="popover-data">{"ext":"Minimal#}
+                                                        {#                                                            Wear","quality":{"color":"#B2B2B2","name":"Normal"},"rarity":{"color":"#eb4b4b","name":"Covert"},"item_special":false,"img":"https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV0924gYKChMj4OrzZgiUGv5wo3uuY8dr02lLn-0FsMGmgIdfEelU3Ml-G_VG9xOm7gZC87suf1zI97aiJAbeK/200fx185f","float_value":null,"assetid":21996358379}#}
+                                                        {#                                                        </div>#}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="for_arrow col-md-2">
+                                                <div class="v-center">
+                                                    <div class="transfer-arrows"><span
+                                                            class="glyphicon glyphicon glyphicon-transfer"
+                                                            id="transfer"><i class="fas fa-exchange-alt"></i></span></div>
+                                                </div>
+                                            </div>
+                                            <div class="left items_want col-md-5">
+                                                <div class="steamitem-wrapper" style="float: left;">
+                                                    <div class="steamitem itemsmall " data-id="2430" data-count="1" data-type="other" data-title="Any Offers" data-displayname="Any Offers" data-original-title="" title="">
+                                                        <div class="steamitem-image">
+                                                            <img src="{% static 'exchanger/img/any_offers.png' %}" alt="Any offers">
+                                                        </div>
+{#                                                        <div style="display:none" class="popover-data">{"ext":null,"quality":null,"rarity":null,"item_special":true,"img":"any_offers.png","float_value":null,"assetid":null}</div>#}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+{% endblock %}
+
+
+</body>
+</html>
