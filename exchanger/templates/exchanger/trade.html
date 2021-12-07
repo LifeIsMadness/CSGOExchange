@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>Trade</title>
+    {% endblock %}
+    {% block styles %}
+        {{ block.super }}
+        <link rel="stylesheet" href="{% static 'exchanger/css/index.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'exchanger/css/trade.css' %}" type="text/css">
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    {{ block.super }}
+    <main>
+        <div class="container-fluid container-padded-60" style="height: auto !important;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6 new-trades-headers">
+                                            <h3>Items you have:</h3>
+                                        </div>
+                                    </div>
+                                    <div class="well well-dropin" id="leftTrade">
+                                        <div class="well-placeholder">
+
+                                            <div class="trade-item trade-item-placeholder" id="placeholder-left">
+                                                <span class="glyphicon"></span> Add up to <strong>12</strong> items from <strong>your inventory</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6 new-trades-headers">
+                                            <h3>Items you want:</h3>
+                                        </div>
+                                    </div>
+                                    <div class="well well-dropin" id="rightTrade">
+                                        <div class="trade-item form-item" style="" data-right="2430" data-type="other">
+                                            <div class="trade-item-image visible-lg">
+                                                <div class="donationitem itemmicro" data-original-title="" title="">
+                                                    <img src="{% static 'exchanger/img/any_offers.png' %}" class="item-img">
+                                                </div>
+                                            </div>
+                                            <div class="trade-item-name">
+                                                Any Offers</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="note-editor" style="display:none;">
+                                <div class="col-md-12">
+                                    <div>
+                                        <div class="wysibb"><div class="wysibb-toolbar"><div class="wysibb-toolbar-container"><div class="wysibb-toolbar-btn wbb-bold"><span class="fonticon ve-tlb-bold1 btn-inner"></span><span class="btn-tooltip">Bold<ins></ins> <span class="tthotkey">[ctrl+b]</span></span></div><div class="wysibb-toolbar-btn wbb-italic"><span class="fonticon ve-tlb-italic1 btn-inner"></span><span class="btn-tooltip">Italic<ins></ins> <span class="tthotkey">[ctrl+i]</span></span></div><div class="wysibb-toolbar-btn wbb-underline"><span class="fonticon ve-tlb-underline1 btn-inner"></span><span class="btn-tooltip">Underline<ins></ins> <span class="tthotkey">[ctrl+u]</span></span></div><div class="wysibb-toolbar-btn wbb-strike"><span class="fonticon fi-stroke1 ve-tlb-strike1 btn-inner"></span><span class="btn-tooltip">Strike<ins></ins></span></div><div class="wysibb-toolbar-btn wbb-dropdown wbb-cp"><div class="ve-tlb-colorpick"><span class="fonticon"></span><span class="cp-line"></span></div><ins class="fonticon ar"></ins><span class="btn-tooltip">Font color<ins></ins></span><div class="wbb-list"><div class="nc">Auto</div><div class="sc" style="background:#000000" title="#000000"></div><div class="sc" style="background:#444444" title="#444444"></div><div class="sc" style="background:#666666" title="#666666"></div><div class="sc" style="background:#999999" title="#999999"></div><div class="sc" style="background:#b6b6b6" title="#b6b6b6"></div><div class="sc" style="background:#cccccc" title="#cccccc"></div><div class="sc" style="background:#d8d8d8" title="#d8d8d8"></div><div class="sc" style="background:#efefef" title="#efefef"></div><div class="sc" style="background:#f4f4f4" title="#f4f4f4"></div><div class="sc" style="background:#ffffff" title="#ffffff"></div><span class="pl"></span><div class="sc" style="background:#ff0000" title="#ff0000"></div><div class="sc" style="background:#980000" title="#980000"></div><div class="sc" style="background:#ff7700" title="#ff7700"></div><div class="sc" style="background:#ffff00" title="#ffff00"></div><div class="sc" style="background:#00ff00" title="#00ff00"></div><div class="sc" style="background:#00ffff" title="#00ffff"></div><div class="sc" style="background:#1e84cc" title="#1e84cc"></div><div class="sc" style="background:#0000ff" title="#0000ff"></div><div class="sc" style="background:#9900ff" title="#9900ff"></div><div class="sc" style="background:#ff00ff" title="#ff00ff"></div><span class="pl"></span><div class="sc" style="background:#f4cccc" title="#f4cccc"></div><div class="sc" style="background:#dbb0a7" title="#dbb0a7"></div><div class="sc" style="background:#fce5cd" title="#fce5cd"></div><div class="sc" style="background:#fff2cc" title="#fff2cc"></div><div class="sc" style="background:#d9ead3" title="#d9ead3"></div><div class="sc" style="background:#d0e0e3" title="#d0e0e3"></div><div class="sc" style="background:#c9daf8" title="#c9daf8"></div><div class="sc" style="background:#cfe2f3" title="#cfe2f3"></div><div class="sc" style="background:#d9d2e9" title="#d9d2e9"></div><div class="sc" style="background:#ead1dc" title="#ead1dc"></div><div class="sc" style="background:#ea9999" title="#ea9999"></div><div class="sc" style="background:#dd7e6b" title="#dd7e6b"></div><div class="sc" style="background:#f9cb9c" title="#f9cb9c"></div><div class="sc" style="background:#ffe599" title="#ffe599"></div><div class="sc" style="background:#b6d7a8" title="#b6d7a8"></div><div class="sc" style="background:#a2c4c9" title="#a2c4c9"></div><div class="sc" style="background:#a4c2f4" title="#a4c2f4"></div><div class="sc" style="background:#9fc5e8" title="#9fc5e8"></div><div class="sc" style="background:#b4a7d6" title="#b4a7d6"></div><div class="sc" style="background:#d5a6bd" title="#d5a6bd"></div><div class="sc" style="background:#e06666" title="#e06666"></div><div class="sc" style="background:#cc4125" title="#cc4125"></div><div class="sc" style="background:#f6b26b" title="#f6b26b"></div><div class="sc" style="background:#ffd966" title="#ffd966"></div><div class="sc" style="background:#93c47d" title="#93c47d"></div><div class="sc" style="background:#76a5af" title="#76a5af"></div><div class="sc" style="background:#6d9eeb" title="#6d9eeb"></div><div class="sc" style="background:#6fa8dc" title="#6fa8dc"></div><div class="sc" style="background:#8e7cc3" title="#8e7cc3"></div><div class="sc" style="background:#c27ba0" title="#c27ba0"></div><div class="sc" style="background:#cc0000" title="#cc0000"></div><div class="sc" style="background:#a61c00" title="#a61c00"></div><div class="sc" style="background:#e69138" title="#e69138"></div><div class="sc" style="background:#f1c232" title="#f1c232"></div><div class="sc" style="background:#6aa84f" title="#6aa84f"></div><div class="sc" style="background:#45818e" title="#45818e"></div><div class="sc" style="background:#3c78d8" title="#3c78d8"></div><div class="sc" style="background:#3d85c6" title="#3d85c6"></div><div class="sc" style="background:#674ea7" title="#674ea7"></div><div class="sc" style="background:#a64d79" title="#a64d79"></div><div class="sc" style="background:#900000" title="#900000"></div><div class="sc" style="background:#85200C" title="#85200C"></div><div class="sc" style="background:#B45F06" title="#B45F06"></div><div class="sc" style="background:#BF9000" title="#BF9000"></div><div class="sc" style="background:#38761D" title="#38761D"></div><div class="sc" style="background:#134F5C" title="#134F5C"></div><div class="sc" style="background:#1155Cc" title="#1155Cc"></div><div class="sc" style="background:#0B5394" title="#0B5394"></div><div class="sc" style="background:#351C75" title="#351C75"></div><div class="sc" style="background:#741B47" title="#741B47"></div><div class="sc" style="background:#660000" title="#660000"></div><div class="sc" style="background:#5B0F00" title="#5B0F00"></div><div class="sc" style="background:#783F04" title="#783F04"></div><div class="sc" style="background:#7F6000" title="#7F6000"></div><div class="sc" style="background:#274E13" title="#274E13"></div><div class="sc" style="background:#0C343D" title="#0C343D"></div><div class="sc" style="background:#1C4587" title="#1C4587"></div><div class="sc" style="background:#073763" title="#073763"></div><div class="sc" style="background:#20124D" title="#20124D"></div><div class="sc" style="background:#4C1130" title="#4C1130"></div></div></div></div><div class="wysibb-toolbar-container"><div class="wysibb-toolbar-btn wbb-justifyleft"><span class="fonticon ve-tlb-textleft1 btn-inner"></span><span class="btn-tooltip">Align left<ins></ins></span></div><div class="wysibb-toolbar-btn wbb-justifycenter"><span class="fonticon ve-tlb-textcenter1 btn-inner"></span><span class="btn-tooltip">Align center<ins></ins></span></div><div class="wysibb-toolbar-btn wbb-justifyright"><span class="fonticon ve-tlb-textright1 btn-inner"></span><span class="btn-tooltip">Align right<ins></ins></span></div></div><div class="wysibb-toolbar-container"><div class="wysibb-toolbar-btn wbb-bullist"><span class="fonticon ve-tlb-list1 btn-inner"></span><span class="btn-tooltip">• Unordered list<ins></ins></span></div><div class="wysibb-toolbar-btn wbb-numlist"><span class="fonticon ve-tlb-numlist1 btn-inner"></span><span class="btn-tooltip">1. Ordered list<ins></ins></span></div></div><div class="wysibb-toolbar-container"><div class="wysibb-toolbar-btn wbb-link"><span class="fonticon ve-tlb-link1 btn-inner"></span><span class="btn-tooltip">Link<ins></ins> <span class="tthotkey">[ctrl+shift+2]</span></span></div></div><div class="wysibb-toolbar-container modeSwitch"><div class="wysibb-toolbar-btn mswitch" unselectable="on"><span class="btn-inner modesw" unselectable="on">[bbcode]</span></div></div></div><div class="wysibb-text"><textarea rows="10" class="form-control wysibb-texarea" id="optional-message" placeholder="Optional trade message." name="trade[message]" style="display: none;"></textarea><div class="wysibb-text-editor wysibb-body" style="max-height:800px;min-height:0px" contenteditable="true"><span></span></div></div><div class="bottom-resize-line"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 15px;">
+                                <div class="col-md-12">
+                                    <div class="right">
+                                        <button type="submit" class="btn btn-success btn-lg disabled" id="add-trade" data-original-title="" title="">Add Trade</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="height: auto !important;">
+                <div class="col-md-8" style="float: none; margin: 0 auto;">
+                    <div class="page-header header-dimmed">
+                        <h3><span class="glyphicon glyphicon-th"></span> Your inventory</h3>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4 class="dimmed">Inventory <small id="refresh-info">(refreshed 3 minutes ago)</small></h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <div class="steamitem-wrapper " style="float: left;">
+                                        <div class="steamitem itemsmall normal " style="border-bottom: 4px solid #b0c3d9;" onclick="addHave($(this))" data-type="normal" data-title="AUG | Contractor" data-container="body" data-trigger="hover" data-placement="top" data-count="1" data-id="43159" data-displayname="AUG | Contractor (Field-Tested)" data-assetid="62519450" data-hide-info="1" data-original-title="" title="">
+                                            <div class="steamitem-counter"></div>
+
+
+                                            <div class="steamitem-price" style="display: block;">$0.03</div>
+
+
+                                            <div class="steamitem-image">
+                                                <img src="https://steamcommunity-a.akamaihd.net/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZYMUrsm1j-9xgEObwgfEh_nvjlWhNzZCveCDfIBj98xqodQ2CZknz56IeSKIzhYYgnBPq1bWPwv-Ua6WyVnuJI7A9bv8eoEK17m54qSYLB-MY5JH8PXUv6HM1-pvEw61fdeMdXX9_m0Ku1M/100fx60f" alt="100fx60f" data-original="https://steamcommunity-a.akamaihd.net/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZYMUrsm1j-9xgEObwgfEh_nvjlWhNzZCveCDfIBj98xqodQ2CZknz56IeSKIzhYYgnBPq1bWPwv-Ua6WyVnuJI7A9bv8eoEK17m54qSYLB-MY5JH8PXUv6HM1-pvEw61fdeMdXX9_m0Ku1M/100fx60f" style="display: inline;">
+                                            </div>
+
+                                            <div class="steamitem-itemwear ">
+                                                Field-Tested
+                                            </div>
+
+                                            <div style="display:none" class="search">AUG | Contractor</div>
+                                            <div style="display:none" class="popover-data">{"ext":"Field-Tested","quality":{"color":"#B2B2B2","name":"Normal"},"rarity":{"color":"#b0c3d9","name":"Consumer"},"item_special":false,"img":"https://steamcommunity-a.akamaihd.net/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZYMUrsm1j-9xgEObwgfEh_nvjlWhNzZCveCDfIBj98xqodQ2CZknz56IeSKIzhYYgnBPq1bWPwv-Ua6WyVnuJI7A9bv8eoEK17m54qSYLB-MY5JH8PXUv6HM1-pvEw61fdeMdXX9_m0Ku1M/200fx185f","float_value":null,"assetid":null}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
+</body>
+</html>

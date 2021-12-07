@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     {% block title %}
-        <title>Trade</title>
+        <title>All slots</title>
     {% endblock %}
     {% block styles %}
         {{ block.super }}
@@ -20,16 +20,28 @@
         <div class="container-fluid container-padded-60" style="height: auto !important;">
             <div class="row">
                 <div class="col-md-6">
+                    <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                        <option selected>Weapon</option>
+                        <option value="1">Knife</option>
+                        <option value="2">AK-47</option>
+                        <option value="3">M4A1</option>
+                    </select>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
                 </div>
                 <div class="col-md-4 col-md-offset-2">
-                    <div style="float:right;" id="trade_buttons">
-                        <a class="btn btn-primary post_trade" href="#" data-original-title="" title="">
+                    <div style="float:left;" id="trade_buttons">
+                        <a class="btn btn-primary post_trade" href="{% url 'exchanger:trade' %}" data-original-title="" title="">
                             <strong>Post</strong> Trade</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container-fluid container-padded-60" style="height: auto !important;">
+        <div class="container-fluid container-padded-60" style="height: auto !important; padding-top: 0;">
             <div class="col-md-9" style="height: auto !important; min-height: 0px !important;">
                 <div class="row">
                     <div class="col-md-14" id="trades-list">

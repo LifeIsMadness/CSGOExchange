@@ -1,0 +1,355 @@
+.trade-userimg {
+ width:20px;
+ height:20px;
+ margin-right:3px
+}
+.itemsmall {
+ width:100px;
+ height:81px;
+ font-size:12px
+}
+.itemmicro {
+ width:80px;
+ height:61px;
+ font-size:12px
+}
+.right {
+ float:right
+}
+.green-info {
+ color:#3cb371
+}
+.left {
+ float:left
+}
+.middle {
+ vertical-align:middle
+}
+#items_header {
+ background:#222533;
+ padding-top:20px;
+ padding-bottom:20px;
+ height:160px;
+ position:relative
+}
+#trades_header {
+ background:#222533;
+ color:#fff;
+ padding-top:20px;
+ padding-bottom:20px;
+ height:160px;
+ position:relative
+}
+#trades_header h1 {
+ text-shadow:0 2px 2px #000
+}
+#trades_header h2 {
+ text-shadow:0 2px 2px #000
+}
+#trades_header p {
+ text-shadow:0 2px 2px #000
+}
+.dimmed {
+ color:#999
+}
+.highlighter {
+ color:#ffa539;
+ font-weight:700
+}
+a.highlighter:hover {
+ color:#ffa539
+}
+.thin {
+ font-weight:400
+}
+.steam-logo {
+ color:#6e9c31
+}
+#site_footer {
+ width:100%;
+ background:#191a1c;
+ margin-top:10px
+}
+#site_footer h4 {
+ font-size:1.5em;
+ color:#999;
+ margin-top:20px
+}
+#site_footer a {
+ color:#595856
+}
+#site_footer a:hover {
+ color:#fff;
+ text-decoration:none
+}
+#site_footer ul {
+ list-style-type:none;
+ padding:0;
+ padding-top:15px;
+ margin:0
+}
+#site_footer ul li {
+ display:block;
+ margin-right:10px;
+ font-weight:700;
+ font-size:16px;
+ margin-bottom:5px
+}
+#site_footer ul li .fa,
+#site_footer ul li .glyphicon {
+ margin-right:7px
+}
+.footer-details {
+ margin-top:15px;
+ margin-bottom:15px;
+ font-size:.9em
+}
+.footer-details .crafted-by {
+ font-weight:700
+}
+.heart {
+ color:#e64c66
+}
+#ferus a {
+ color:#e64c66
+}
+#crafted {
+ float:right
+}
+#crafted li {
+ float:right
+}
+.post_trade {
+ margin-top:65px
+}
+.new-trades-headers {
+ width:100%;
+ text-align:center;
+ color:#767676
+}
+.well-placeholder {
+ color:darkgrey;
+ position:relative;
+ top:50%
+}
+.trade-item {
+ padding:10px;
+ background:#fff;
+ border-radius:10px;
+ margin-bottom:10px;
+ overflow:auto
+}
+.trade-item-placeholder {
+ border:2px #999 dashed;
+ background:0 0;
+ font-size:1.3em
+}
+.well-dropin {
+ border:3px #ebebeb dashed;
+ box-shadow:none;
+ text-align:center;
+ overflow:hidden
+}
+.well-dashed {
+ border:2px #ebebeb dashed;
+ background:0 0;
+ height:81px
+}
+.well-container {
+ width:90%;
+ margin:0 auto
+}
+.well {
+ min-height:20px;
+ padding:19px;
+ margin-bottom:20px;
+ background-color:#f5f5f5;
+ border:1px solid #e3e3e3;
+ border-radius:4px;
+ -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.05);
+ box-shadow:inset 0 1px 1px rgba(0,0,0,.05)
+}
+
+.dimmed {
+ color:#999;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+ font-family:inherit;
+ font-weight:500;
+ line-height:1.1;
+ color:inherit
+}
+h1 small,
+h1 .small,
+h2 small,
+h2 .small,
+h3 small,
+h3 .small,
+h4 small,
+h4 .small,
+h5 small,
+h5 .small,
+h6 small,
+h6 .small,
+.h1 small,
+.h1 .small,
+.h2 small,
+.h2 .small,
+.h3 small,
+.h3 .small,
+.h4 small,
+.h4 .small,
+.h5 small,
+.h5 .small,
+.h6 small,
+.h6 .small {
+ font-weight:400;
+ line-height:1;
+ color:#777
+}
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
+ margin-top:20px;
+ margin-bottom:10px
+}
+h1 small,
+h1 .small,
+.h1 small,
+.h1 .small,
+h2 small,
+h2 .small,
+.h2 small,
+.h2 .small,
+h3 small,
+h3 .small,
+.h3 small,
+.h3 .small {
+ font-size:65%
+}
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+ margin-top:10px;
+ margin-bottom:10px
+}
+h4 small,
+h4 .small,
+.h4 small,
+.h4 .small,
+h5 small,
+h5 .small,
+.h5 small,
+.h5 .small,
+h6 small,
+h6 .small,
+.h6 small,
+.h6 .small {
+ font-size:75%
+}
+h1,
+.h1 {
+ font-size:36px
+}
+h2,
+.h2 {
+ font-size:30px
+}
+h3,
+.h3 {
+ font-size:24px
+}
+h4,
+.h4 {
+ font-size:18px
+}
+h5,
+.h5 {
+ font-size:14px
+}
+h6,
+.h6 {
+ font-size:12px
+}
+p {
+ margin:0 0 10px
+}
+
+
+.page-header {
+ padding-bottom:9px;
+ margin:40px 0 20px;
+ border-bottom:1px solid #eee
+}
+.header-dimmed {
+ border-color:#bbb;
+ color:#bbb
+}
+
+.well-placeholder {
+ color:darkgrey;
+ position:relative;
+ top:50%
+}
+.trade-item {
+ padding:10px;
+ background:#fff;
+ border-radius:10px;
+ margin-bottom:10px;
+ overflow:auto
+}
+.trade-item-placeholder {
+ border:2px #999 dashed;
+ background:0 0;
+ font-size:1.3em
+}
+.trade-item-image {
+ float:left
+}
+.trade-item-image img {
+ width:100%;
+ height:100%
+}
+.trade-item-name {
+ float:left;
+ font-size:.9em;
+ line-height:61px;
+ color:#222;
+ font-weight:700;
+ font-family:source sans pro,sans-serif;
+ margin-left:15px
+}
+.trade-item-count {
+ float:right;
+ line-height:61px;
+}
+.trade-item-count>input {
+ outline:none
+}
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+ cursor:not-allowed;
+ opacity:.65;
+ filter:alpha(opacity=65);
+ -webkit-box-shadow:none;
+ box-shadow:none;
+ pointer-events: all!important;
+}

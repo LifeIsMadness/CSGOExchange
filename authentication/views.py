@@ -1,6 +1,5 @@
 from django.contrib.auth.views import auth_logout
 from django.shortcuts import render, redirect
-
 from django.views import View
 
 
