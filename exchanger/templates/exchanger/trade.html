@@ -31,7 +31,6 @@
                                     </div>
                                     <div class="well well-dropin" id="leftTrade">
                                         <div class="well-placeholder">
-
                                             <div class="trade-item trade-item-placeholder" id="placeholder-left">
                                                 <span class="glyphicon"></span> Add up to <strong>12</strong> items from <strong>your inventory</strong>
                                             </div>
@@ -85,30 +84,28 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h4 class="dimmed">Inventory <small id="refresh-info">(refreshed 3 minutes ago)</small></h4>
+                                    <h4 class="dimmed">Inventory <small id="refresh-info">(refreshed {{ refreshed_at }} minutes ago)</small></h4>
                                 </div>
                             </div>
                             <div class="row">
-                                    <div class="steamitem-wrapper " style="float: left;">
-                                        <div class="steamitem itemsmall normal " style="border-bottom: 4px solid #b0c3d9;" onclick="addHave($(this))" data-type="normal" data-title="AUG | Contractor" data-container="body" data-trigger="hover" data-placement="top" data-count="1" data-id="43159" data-displayname="AUG | Contractor (Field-Tested)" data-assetid="62519450" data-hide-info="1" data-original-title="" title="">
+                                <div class="steamitem-wrapper " style="float: left;">
+                                    {% for item in items %}
+{#style="border-bottom: 4px solid #b0c3d9;"#}
+                                            <div class="steamitem itemsmall normal "  onclick="addHave($(this))" data-type="normal" data-title="{{ item.name }}" data-container="body" data-trigger="hover" data-placement="top" data-count="1" data-id="{{ item.item_id }}" data-displayname="{{ item.market_name }}" data-assetid="62519450" data-hide-info="1" data-original-title="" title="">
                                             <div class="steamitem-counter"></div>
-
-
-                                            <div class="steamitem-price" style="display: block;">$0.03</div>
-
-
+                                            <div class="steamitem-price" style="display: block;">{{ item.lowest_price }}</div>
                                             <div class="steamitem-image">
-                                                <img src="https://steamcommunity-a.akamaihd.net/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZYMUrsm1j-9xgEObwgfEh_nvjlWhNzZCveCDfIBj98xqodQ2CZknz56IeSKIzhYYgnBPq1bWPwv-Ua6WyVnuJI7A9bv8eoEK17m54qSYLB-MY5JH8PXUv6HM1-pvEw61fdeMdXX9_m0Ku1M/100fx60f" alt="100fx60f" data-original="https://steamcommunity-a.akamaihd.net/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZYMUrsm1j-9xgEObwgfEh_nvjlWhNzZCveCDfIBj98xqodQ2CZknz56IeSKIzhYYgnBPq1bWPwv-Ua6WyVnuJI7A9bv8eoEK17m54qSYLB-MY5JH8PXUv6HM1-pvEw61fdeMdXX9_m0Ku1M/100fx60f" style="display: inline;">
+                                                <img src="{{ item.image_link|add:"/100fx60f" }}" alt="{{ item.name }}" data-original="" style="display: inline;">
                                             </div>
-
                                             <div class="steamitem-itemwear ">
-                                                Field-Tested
+                                                {{ item.type }}
                                             </div>
 
-                                            <div style="display:none" class="search">AUG | Contractor</div>
-                                            <div style="display:none" class="popover-data">{"ext":"Field-Tested","quality":{"color":"#B2B2B2","name":"Normal"},"rarity":{"color":"#b0c3d9","name":"Consumer"},"item_special":false,"img":"https://steamcommunity-a.akamaihd.net/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZYMUrsm1j-9xgEObwgfEh_nvjlWhNzZCveCDfIBj98xqodQ2CZknz56IeSKIzhYYgnBPq1bWPwv-Ua6WyVnuJI7A9bv8eoEK17m54qSYLB-MY5JH8PXUv6HM1-pvEw61fdeMdXX9_m0Ku1M/200fx185f","float_value":null,"assetid":null}</div>
+                                            {#                                            <div style="display:none" class="search">AUG | Contractor</div>#}
+                                            {#                                            <div style="display:none" class="popover-data">{"ext":"Field-Tested","quality":{"color":"#B2B2B2","name":"Normal"},"rarity":{"color":"#b0c3d9","name":"Consumer"},"item_special":false,"img":"https://steamcommunity-a.akamaihd.net/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZYMUrsm1j-9xgEObwgfEh_nvjlWhNzZCveCDfIBj98xqodQ2CZknz56IeSKIzhYYgnBPq1bWPwv-Ua6WyVnuJI7A9bv8eoEK17m54qSYLB-MY5JH8PXUv6HM1-pvEw61fdeMdXX9_m0Ku1M/200fx185f","float_value":null,"assetid":null}</div>#}
                                         </div>
-                                    </div>
+
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>

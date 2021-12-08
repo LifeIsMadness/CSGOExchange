@@ -1,5 +1,7 @@
 from django.db import models
 from authentication.models import SteamUser
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 # TODO: auto create this model for the new user
@@ -19,6 +21,7 @@ class Ban(models.Model):
         on_delete=models.CASCADE,
         related_name='bans'
     )
+    reason = models.TextField(default='Rules violation')
     started_at = models.DateTimeField(auto_now_add=True)
     ended_at = models.DateTimeField(blank=True)
 
@@ -38,37 +41,66 @@ class Slot(models.Model):
 # now only weapons
 class Item(models.Model):
     class Types(models.Choices):
-        KNIFE = 'knife'
-        PISTOL = 'pistol'
-        RIFLE = 'rifle'
-        SHOTGUN = 'shotgun'
-        SMG = 'smg'
-        SNIPER_RIFLE = 'sniper rifle'
+        KEY = 'Key'
+        KNIFE = 'Knife'
+        PISTOL = 'Pistol'
+        RIFLE = 'Rifle'
+        SHOTGUN = 'Shotgun'
+        SMG = 'SMG'
+        SNIPER_RIFLE = 'Sniper Rifle'
+        MACHINEGUN = 'Machinegun'
+        TOOL = 'Tool'
+        PASS = 'Pass'
+        CONTAINER = 'Container'
+        STICKER = 'Sticker'
+        TAG = 'Tag'
+        KIT = 'Kit'
+        GIFT = 'Gift'
+        COLLECTIBLE = 'Collectible'
+        GRAFFITI = 'Graffiti'
+        GLOVES = 'Gloves'
+        MUSIC_KIT = 'Music Kit'
+        AGENT = 'Agent'
+        PATCH = 'Patch'
 
-    name = models.CharField(max_length=255)
-    type = models.CharField(max_length=100, choices=Types.choices)
-    cost = models.DecimalField(max_digits=21, decimal_places=20)
-    image = models.ImageField(null=True)
+    item_id = models.CharField(max_length=100, default='')
+    type = models.CharField(max_length=100, choices=Types.choices, null=True)
+    name = models.CharField(max_length=255, default='')
+    market_name = models.CharField(max_length=255, default='')
+    market_hash_name = models.CharField(max_length=255, default='')
+    lowest_price = models.CharField(max_length=20, default='')
+    image_link = models.CharField(
+        max_length=1000,
+        default=''
+    )
+    exterior = models.CharField(max_length=20, null=True)
+    inventory = models.ForeignKey(
+        to='Inventory',
+        related_name='items',
+        on_delete=models.CASCADE,
+    )
+    slots = models.ManyToManyField(to='Slot')
 
-    class Meta:
-        abstract = True
+    # class Meta:
+    #     abstract = True
 
     def __str__(self):
         return self.name.__str__()
 
 
-class Weapon(Item):
-    pass
+# Auto-created after the user is created
+class Inventory(models.Model):
+    raw_data = models.JSONField(null=True)
 
-
-# TODO: could be choices
-class WeaponSkin(models.Model):
-    name = models.CharField(max_length=255)
-    quality = models.CharField(max_length=20)
-    float = models.FloatField()
-    weapon = models.ForeignKey(
-        to='Weapon',
-        related_name='skins',
+    user = models.OneToOneField(
+        to=SteamUser,
+        related_name='inventory',
         on_delete=models.CASCADE
     )
-    slots = models.ManyToManyField(to='Slot')
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+@receiver(post_save, sender=SteamUser)
+def create_inventory(sender, **kwargs):
+    if kwargs.get('created'):
+        Inventory.objects.create(user=kwargs.get('instance'))

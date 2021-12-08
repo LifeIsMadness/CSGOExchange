@@ -206,3 +206,8 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/'
+
+from django.urls import reverse_lazy
+LOGIN_URL = reverse_lazy('social:begin', args=['steam'])
