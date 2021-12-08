@@ -31,7 +31,8 @@
                             <div class="header__user-nav">
                                 <div class="user-tools">
                                     <div class="user-tools__links">
-                                        <a class="user-tools__link user-tools__link_history" href="#">Transaction history</a>
+                                        <a class="user-tools__link user-tools__link_trades" href="{% url 'exchanger:my_trades' %}">My trades</a>
+                                        <a class="user-tools__link user-tools__link_history" href="{% url 'exchanger:my_history' %}">Trade history</a>
                                         <a class="user-tools__link user-tools__link_tradelink" href="#" onclick="$('#exampleModalCenter').modal('show')">Trade-offer link</a>
                                         <a class="user-tools__link user-tools__link_logout" href="{% url "auth:logout" %}">Sign out</a>
                                     </div>
@@ -71,16 +72,25 @@
         </button>
       </div>
       <div class="modal-body">
-        <label style="width: 100%"><input type="text" class="input-field" placeholder="https://steamcommunity.com/tradeoffer/new/?partner=84576312&amp;token="></label>
+        <label style="width: 100%">
+            <input type="text" class="input-field" form="data-form-base" name="trade_link" placeholder="https://steamcommunity.com/tradeoffer/new/?partner=84576312&amp;token="
+                value="{{ trade_link }}"
+            >
+        </label>
       </div>
       <div class="modal-footer">
+
         <a href="https://steamcommunity.com/id/me/tradeoffers/privacy#trade_offer_access_url" target="_blank" rel="noreferrer" class="btn btn-info" style="color: white"> Get trade-offer link</a>
         <button type="button" class="btn btn-secondary" onclick="$('#exampleModalCenter').modal('hide')">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" form="data-form-base" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
+
+             <form id="data-form-base" name="data-form-base" style="visibility: hidden" action="{% url 'exchanger:tradelink' %}" accept-charset="UTF-8" method="post">
+                                {% csrf_token %}
+             </form>
         </header>
     {% endblock %}
     {% block scripts %}

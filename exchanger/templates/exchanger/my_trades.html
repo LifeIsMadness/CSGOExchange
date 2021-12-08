@@ -5,32 +5,31 @@
 <head>
     <meta charset="UTF-8">
     {% block title %}
-        <title>All slots</title>
+        <title>My Trades</title>
     {% endblock %}
     {% block styles %}
         {{ block.super }}
         <link rel="stylesheet" href="{% static 'exchanger/css/index.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'exchanger/css/trade.css' %}" type="text/css">
     {% endblock %}
-
 </head>
 <body>
 {% block body %}
     {{ block.super }}
-    <main>
+   <main>
         <div class="container-fluid container-padded-60" style="height: auto !important;">
             <div class="row">
                 <div class="col-md-6">
-                    <form id="select-form" style="visibility: hidden" method="get" action="{% url 'exchanger:index' %}">
-                    </form>
-                    <div class="input-group">
-                        <input name="search" form="select-form" type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                               aria-describedby="search-addon" />
-                        <button type="submit" form="select-form" class="btn btn-outline-primary">search</button>
-                    </div>
+                    <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                        <option selected>Weapon</option>
+                        <option value="1">Knife</option>
+                        <option value="2">AK-47</option>
+                        <option value="3">M4A1</option>
+                    </select>
                 </div>
                 <div class="col-md-4 col-md-offset-2">
                     <div style="float:left;" id="trade_buttons">
-                        <a class="btn btn-primary post_trade" href="{% url 'exchanger:trade' %}" data-original-title="" title="">
+                        <a class="btn btn-primary" href="{% url 'exchanger:trade' %}" data-original-title="" title="">
                             <strong>Post</strong> Trade</a>
                     </div>
                 </div>
@@ -44,23 +43,22 @@
                             {% for slot in slots %}
                                 {% for item in slot.item_set.all %}
                                     <div class="col-md-14">
-
                                         <div class="panel panel-default panel-simpletrade ">
                                             <div class="panel-heading">
                                                 <div class="row trades-heading">
                                                     <div class="user-heading col-md-10">
                                                         <img class="radiused trade-userimg"
-                                                             src="{{ slot.user.avatar }}"
+                                                             src="{{ user.avatar }}"
                                                              alt="782ff688a1ce213ad6c324ea551a97d07cb25054"
                                                              style="display: inline;">
-                                                        <a href="{{ slot.user.inventory.trade_link }}" data-toggle="tooltip"
+                                                        <a href="{{ user.inventory.trade_link }}" data-toggle="tooltip"
                                                            data-html="true" title="" class="user-profile-link"
                                                            data-original-title="Show Space Cowboy profile page">
                                                             <strong>
-                                                                {{ slot.user.personaname }}</strong>
+                                                                {{ user.personaname }}</strong>
                                                         </a>
                                                         wants to trade
-                                                        <span class="dimmed timed">(bumped <strong><span>{{ slot.get_bump }} minutes ago</span></strong>)</span>
+                                                        <span class="dimmed timed">(Created at <strong><span>{{ slot.added_at }}</span></strong>)</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -106,11 +104,18 @@
                                                                 <div class="steamitem-image">
                                                                     <img src="{% static 'exchanger/img/any_offers.png' %}" alt="Any offers">
                                                                 </div>
-                                                                {#                                                        <div style="display:none" class="popover-data">{"ext":null,"quality":null,"rarity":null,"item_special":true,"img":"any_offers.png","float_value":null,"assetid":null}</div>#}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="panel-footer panel-actions">
+                                                <a href="{% url 'exchanger:bump_trade' slot.id %}" title="" class="btn btn-custom btn-xs " data-original-title="Bump this trade">
+                                                    Bump
+                                                </a>
+                                                <a href="{% url 'exchanger:close_trade' slot.id %}" class="btn btn-primary btn-xs close_trade">
+                                                     Close
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -123,11 +128,5 @@
         </div>
     </main>
 {% endblock %}
-
-{% block scripts %}
-    {{ block.super }}
-{% endblock %}
-
-
 </body>
 </html>

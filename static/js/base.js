@@ -27,6 +27,7 @@ function addHave(item) {
        // '</div>\n' +
         '</div>';
 
+    $('#data-form').append(`<input type="hidden" id="${item.data('id')}" name="${item.data('id')}" value="${item.data('id')}" />`)
     div = $(div);
     $('#placeholder-left').before(div);
     item.hide();
@@ -35,6 +36,7 @@ function addHave(item) {
 
 function removeHave(id) {
     $(`div[data-left=${id}]`).remove();
+    $(`#${id}`).remove()
     $(`div[data-id=${id}]`).show();
     if (!$('.well-placeholder').children('.trade-item.form-item').length) {
         $('#add-trade').addClass('disabled');

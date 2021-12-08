@@ -66,7 +66,7 @@
                             <div class="row" style="margin-top: 15px;">
                                 <div class="col-md-12">
                                     <div class="right">
-                                        <button type="submit" class="btn btn-success btn-lg disabled" id="add-trade" data-original-title="" title="">Add Trade</button>
+                                        <button form="data-form" type="submit" class="btn btn-success btn-lg disabled" id="add-trade" data-original-title="" title="">Add Trade</button>
                                     </div>
                                 </div>
                             </div>
@@ -113,6 +113,9 @@
                 </div>
             </div>
         </div>
+    <form action="{% url 'exchanger:add_slot' %}" method="post" id="data-form" name="data-form" style="visibility: hidden">
+        {% csrf_token %}
+    </form>
     </main>
 
 {% endblock %}

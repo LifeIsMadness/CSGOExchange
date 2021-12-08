@@ -1,15 +1,60 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.views import View
 from string import Template
 from django.contrib.auth.mixins import LoginRequiredMixin
 import requests
 from django.utils import timezone
 import datetime
-from .models import Item
+from .models import Item, Slot
+from django.views.generic import ListView
+from django import forms
+from django.shortcuts import get_object_or_404
+from django.db.models import Q
 
 INVENTORY_URL = Template('https://steamcommunity.com/profiles/$steamid/inventory/json/730/2')
 PRICE_URL = Template('https://steamcommunity.com/market/priceoverview/?currency=1&appid=730&market_hash_name=$name')
 ICON_URL = Template('https://steamcommunity-a.akamaihd.net/economy/image/$icon')
+
+
+class IndexView(LoginRequiredMixin, ListView):
+    template_name = 'exchanger/index.html'
+    paginate_by = 15
+    context_object_name = 'slots'
+
+    def get_queryset(self):
+        search = ''.join(self.request.GET.get('search', ''))
+        queryset = Slot.objects.filter(status='active').prefetch_related('item_set')
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        print(self.object_list)
+        context = super().get_context_data(**kwargs)
+        trade_link = self.request.user.inventory.trade_link
+        context['trade_link'] = trade_link
+        print(context)
+
+        return context
+
+
+class TradelinkRequiredView(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'tradelink_required.html')
+
+
+class TradelinkForm(forms.Form):
+    trade_link = forms.URLField(max_length=500, required=True)
+
+
+class SetupTradelinkView(LoginRequiredMixin, View):
+    def post(self, request):
+        form = TradelinkForm(request.POST)
+        if form.is_valid():
+            trade_link = form.cleaned_data['trade_link']
+            inv = request.user.inventory
+            inv.trade_link = trade_link
+            inv.save()
+            return redirect(reverse('exchanger:index'))
+        return render(request, 'tradelink_required.html')
 
 
 class NewTradeView(LoginRequiredMixin, View):
@@ -62,12 +107,16 @@ class NewTradeView(LoginRequiredMixin, View):
             return res
 
         ids = list(data['rgInventory'].values())
+        print(ids)
         items = list(data['rgDescriptions'].values())
         instances = inventory.items.all()
         for item in instances:
-            if not item.slots.all().exists() and item.item_id not in map(str, ids):
-                continue
-            item.delete()
+            if item.item_id not in map(lambda x: x['id'], ids):
+                for slot in item.slots.all():
+                    slot.status = 'closed'
+                    slot.save()
+                item.inventory = None
+                item.save()
 
         for i in range(len(ids)):
             for k in range(len(items)):
@@ -84,3 +133,78 @@ class NewTradeView(LoginRequiredMixin, View):
                     **get_item_data(items[k]),
                 )
 
+
+class AddSlot(LoginRequiredMixin, View):
+    def post(self, request):
+        data = dict(request.POST)
+
+        data.pop('csrfmiddlewaretoken')
+        ids = data.keys()
+        slot = Slot.objects.create(
+            user=request.user,
+            status='active'
+        )
+        for id in ids:
+            item = Item.objects.get(item_id__exact=id)
+            slot.item_set.add(item)
+        slot.save()
+        return redirect(reverse('exchanger:index'))
+
+
+class MyTrades(LoginRequiredMixin, ListView):
+    template_name = 'exchanger/my_trades.html'
+    paginate_by = 15
+    context_object_name = 'slots'
+
+    # queryset = Slot.objects.all().prefetch_related('item_set')
+
+    def get_queryset(self):
+        return Slot.objects.filter(
+            user=self.request.user,
+            status='active'
+        ).prefetch_related('item_set')
+
+    def get_queryset(self):
+        search = self.request.GET.get('search', [''])[0]
+        queryset = Slot.objects.filter(user=self.request.user).filter(status='active').prefetch_related('item_set')
+        return  queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        trade_link = self.request.user.inventory.trade_link
+        context['trade_link'] = trade_link
+        return context
+
+
+class MyHistory(LoginRequiredMixin, ListView):
+    template_name = 'exchanger/my_history.html'
+    paginate_by = 15
+    context_object_name = 'slots'
+
+    # queryset = Slot.objects.all().prefetch_related('item_set')
+
+
+    def get_queryset(self):
+        search = self.request.GET.get('search', [''])[0]
+        queryset = Slot.objects.filter(user=self.request.user).filter(status='closed').prefetch_related('item_set')
+        return  queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        trade_link = self.request.user.inventory.trade_link
+        context['trade_link'] = trade_link
+        return context
+
+
+class BumpSlot(LoginRequiredMixin, View):
+    def get(self, request, id):
+        get_object_or_404(Slot, user=request.user, pk=id, status='active').save()
+        return redirect(reverse('exchanger:my_trades'))
+
+
+class CloseSlot(LoginRequiredMixin, View):
+    def get(self, request, id):
+        slot = get_object_or_404(Slot, user=request.user, pk=id, status='active')
+        slot.status = 'closed'
+        slot.save()
+        return redirect(reverse('exchanger:my_trades'))

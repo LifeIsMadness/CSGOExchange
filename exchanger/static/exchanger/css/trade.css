@@ -353,3 +353,42 @@ fieldset[disabled] .btn {
  box-shadow:none;
  pointer-events: all!important;
 }
+.btn-custom {
+ background-color:#3f4c6b;
+ border-color:#3f4c6b;
+ color:#fff
+}
+.btn-custom:hover,
+.btn-custom:focus,
+.btn-custom:active,
+.btn-custom.active {
+ background-color:#36415b;
+ border-color:#2c354b;
+ color:#fff
+}
+.btn-primary {
+ color:#fff;
+ background-color:#337ab7;
+ border-color:#2e6da4
+}
+.btn-primary:focus,
+.btn-primary.focus {
+ color:#fff;
+ background-color:#286090;
+ border-color:#122b40
+}
+.btn-primary:hover {
+ color:#fff;
+ background-color:#286090;
+ border-color:#204d74
+}
+.btn-primary:active,
+.btn-primary.active,
+.open>.btn-primary.dropdown-toggle {
+ color:#fff;
+ background-color:#286090;
+ border-color:#204d74
+ }
+.trade-dimmed {
+ opacity:.5
+}

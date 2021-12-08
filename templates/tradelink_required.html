@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>Need setup</title>
+    {% endblock %}
+    {% block styles %}
+        {{ block.super }}
+        <link rel="stylesheet" href="{% static 'css/tradelink_required.css' %}" type="text/css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    {{ block.super }}
+    <main>
+        <div class="container container-padded-60" style="margin-top: 25px">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel card" id="welcome-card">
+                        <div class="panel-body">
+                            <h2>We found out that some of the required fields are missing.</h2>
+                            <h3>Below you can fill them out, so you will be using the site in no time:</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel card">
+                        <div class="panel-body">
+                            <h4><span class="fa fa-steam"></span> Trade Offer URL</h4>
+                            <p>To use the site to the full potential and allow other users to send you offers on Steam, we need your Trade Offfer URL.</p>
+                            <form class="form-horizontal" action="{% url 'exchanger:tradelink' %}" accept-charset="UTF-8" data-remote="true" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="tradeurl_input" name="trade_link"
+                                                   placeholder="Paste your URL here"/>
+                                            <span class="input-group-btn">
+<button class="btn btn-primary" type="submit" id="tradeurl_button" data-original-title="" title="">Save</button>
+</span>
+                                        </div>
+                                        <span id="tradeurl_helper" class="help-block"></span>
+                                    </div>
+                                </div>
+                            </form>
+                            <p><strong>You don't know where to find your Trade Offer URL?</strong></p>
+                            <p><strong><a href="https://steamcommunity.com/id/me/tradeoffers/privacy" target="_blank" data-original-title="" title="">Click this link</a></strong> to go to your Privacy Tab on Steam. and copy the URL generated there.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+</body>
+</html>

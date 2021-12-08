@@ -2,6 +2,7 @@ from django.db import models
 from authentication.models import SteamUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
 
 
 # TODO: auto create this model for the new user
@@ -36,6 +37,13 @@ class Slot(models.Model):
     )
     added_at = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=25)
+
+    class Meta:
+        ordering = ['-added_at']
+
+    def get_bump(self):
+        now = timezone.now()
+        return (now - self.added_at).seconds // 60
 
 
 # now only weapons
@@ -78,6 +86,7 @@ class Item(models.Model):
         to='Inventory',
         related_name='items',
         on_delete=models.CASCADE,
+        null=True
     )
     slots = models.ManyToManyField(to='Slot')
 
@@ -91,7 +100,7 @@ class Item(models.Model):
 # Auto-created after the user is created
 class Inventory(models.Model):
     raw_data = models.JSONField(null=True)
-
+    trade_link = models.URLField(max_length=500, null=True)
     user = models.OneToOneField(
         to=SteamUser,
         related_name='inventory',
